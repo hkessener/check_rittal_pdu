@@ -81,7 +81,7 @@ The device id typically used for the RCM inline meter is 2.
     $ ./check_rittal_pdu.pl -H my-pdu-with-rcm.local -D 2
     RITTAL_PDU OK - RCM-Inline-Meter Total_Power_Active is 815 W | Total_Frequency=50Hz;;;0;650 Total_Neutral_Current=3.59A;0:0;0:0;0;3500 Total_Power_Active=815W;0:0;0:0;0;27300 Total_Energy_Active=14479.9kWh;;;0;2000000000 Total_Energy_Active_Runtime=75178684s;;;0;2000000000 L1_Voltage=230.2V;210:250;200:260;0;4000 L1_Voltage_THD=0%;;;0;400 L1_Current=0A;0:0;0:0;0;3500 L1_Current_THD=0%;;;0;400 L1_Power_Factor=1;;;-100;100 L1_Power_Active=0W;0:0;0:0;0;9100 L1_Power_Reactive=0var;;;0;9100 L1_Power_Apparent=0VA;;;0;9100 L1_Energy_Active=0kWh;;;0;2000000000 L1_Energy_Apparent=0kVAh;;;0;2000000000 L2_Voltage=230.6V;210:250;200:260;0;4000 L2_Voltage_THD=0%;;;0;400 L2_Current=0.1A;0:0;0:0;0;3500 L2_Current_THD=0%;;;0;400 L2_Power_Factor=-0.1;;;-100;100 L2_Power_Active=2W;0:0;0:0;0;9100 L2_Power_Reactive=24var;;;0;9100 L2_Power_Apparent=24VA;;;0;9100 L2_Energy_Active=37.2kWh;;;0;2000000000 L2_Energy_Apparent=427kVAh;;;0;2000000000 L3_Voltage=229.8V;210:250;200:260;0;4000 L3_Voltage_THD=0%;;;0;400 L3_Current=3.71A;0:0;0:0;0;3500 L3_Current_THD=0%;;;0;400 L3_Power_Factor=-0.94;;;-100;100 L3_Power_Active=805W;0:0;0:0;0;9100 L3_Power_Reactive=214var;;;0;9100 L3_Power_Apparent=849VA;;;0;9100 L3_Energy_Active=14442.7kWh;;;0;2000000000 L3_Energy_Apparent=15257.3kVAh;;;0;2000000000 RCMs_RCM_01_AC=0.7mA;;;0;1000 RCMs_RCM_01_DC=0mA;;;0;1000
 
-# CMC III sensor
+## CMC III sensor
 
     $ ./check_rittal_pdu.pl -H my-pdu-with-rcm.local -D 3
     RITTAL_PDU OK - CMCIII-HUM Temperature is 20.7 degree_C | Temperature=20.7degree_C;;;-40;80 Humidity=47%;;;0;100 Dew_Point=9degree_C;;;-40;100
@@ -137,7 +137,7 @@ Then query each device with it's own dedicated check as shown with the sample ou
         };
     RITTAL_PDU OK - PDU-Controller healthy
 
-# Templates for Icinga 2
+# TEMPLATES FOR ICINGA 2
 
 The provided templates have been created with Icinga Director.
 
