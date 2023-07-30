@@ -8,7 +8,7 @@ use Net::SNMP;
 use Monitoring::Plugin;
 
 ############################################################
-# check_rittal.pl
+# check_rittal_pdu.pl
 ############################################################
 sub ProcessPDUController($$$);
 sub ProcessPDUMeter1Phase($$$);
@@ -29,7 +29,7 @@ my $Plugin = Monitoring::Plugin->new(
   usage => "This plugin checks Rittal power distribution units\n\n" .
            "Usage: %s -H <hostname> -D <device_id> -C <community>\n\n".
            "Use --help for a full list of parameters\n",
-  version => 'Version 1.0 Jul 29 2023, Hajo Kessener'
+  version => 'Version 1.01 Jul 30 2023, Hajo Kessener'
 );
 
 ############################################################
