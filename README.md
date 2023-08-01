@@ -12,7 +12,7 @@ Developed for and currently tested with:
 
 - DK 7979.2xx -- PDU metered
 - DK 7979.713 -- RCM measurement module / inline meter
-- DK 7030.110 -- CMC-TMP (temperature sensor)
+- DK 7030.110 -- CMC-TMP (temperature sensor) 
 - DK 7030.111 -- CMC-HUM (temperature/humidity sensor)
 
 # SYNOPSIS
