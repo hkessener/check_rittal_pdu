@@ -15,7 +15,8 @@ sub ProcessPDUMeter1Phase($$$);
 sub ProcessPDUMeter3Phase($$$);
 sub ProcessRCMInline($$$);
 sub ProcessCMCIIIPUCompact($$$);
-sub ProcessCMCIIIHumiditySensor($$$);
+sub ProcessCMCIIITmpSensor($$$);
+sub ProcessCMCIIIHumSensor($$$);
 sub ProcessCMCVariable($$$);
 sub ProcessVariable($$$);
 sub ProcessVariableWithThresholds($$$);
@@ -234,8 +235,10 @@ for(my $Ix = 1; $Ix <= $DevCount; $Ix++) {
     $ok_msg = ProcessPDUMeter3Phase($Plugin,$Result,$Ix);
   } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7030.010') {
     $ok_msg = ProcessCMCIIIPUCompact($Plugin,$Result,$Ix);
+  } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7030.110') {
+    $ok_msg = ProcessCMCIIITmpSensor($Plugin,$Result,$Ix);
   } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7030.111') {
-    $ok_msg = ProcessCMCIIIHumiditySensor($Plugin,$Result,$Ix);
+    $ok_msg = ProcessCMCIIIHumSensor($Plugin,$Result,$Ix);
   } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7979714') {
     $ok_msg = ProcessRCMInline($Plugin,$Result,$Ix);
   } else {
@@ -615,10 +618,26 @@ sub ProcessCMCIIIPUCompact($$$) {
   return('CMCIII-PU '.$ok_msg);
 }
 ############################################################
-sub ProcessCMCIIIHumiditySensor($$$) {
+sub ProcessCMCIIITmpSensor($$$) {
   my($Plugin,$Result,$Ix) = @_ or return(undef);
 
-  ($Plugin->opts->verbose >= 2) and print qq|ProcessCMCIIIHumiditySensor: $Ix\n|;
+  ($Plugin->opts->verbose >= 2) and print qq|ProcessCMCIIITmpSensor: $Ix\n|;
+
+  # Temperature
+  my $ok_msg = ProcessCMCVariable($Plugin,$Result,'1.3.6.1.4.1.2606.7.4.2.2.1.10.'.$Ix.'.2');
+  my $TemperatureStatus = $Result->{'1.3.6.1.4.1.2606.7.4.2.2.1.10.'.$Ix.'.9'};
+  
+  if($TemperatureStatus ne 'OK') {
+    $Plugin->add_message(WARNING, $TemperatureStatus);
+  }
+
+  return('CMCIII-TMP '.$ok_msg);
+}
+############################################################
+sub ProcessCMCIIIHumSensor($$$) {
+  my($Plugin,$Result,$Ix) = @_ or return(undef);
+
+  ($Plugin->opts->verbose >= 2) and print qq|ProcessCMCIIIHumSensor: $Ix\n|;
 
   # Temperature
   my $ok_msg = ProcessCMCVariable($Plugin,$Result,'1.3.6.1.4.1.2606.7.4.2.2.1.10.'.$Ix.'.2');

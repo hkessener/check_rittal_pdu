@@ -12,6 +12,7 @@ Developed for and currently tested with:
 
 - DK 7979.2xx -- PDU metered
 - DK 7979.713 -- RCM measurement module / inline meter
+- DK 7030.110 -- CMC-TMP (temperature sensor)
 - DK 7030.111 -- CMC-HUM (temperature/humidity sensor)
 
 # SYNOPSIS
@@ -83,7 +84,7 @@ The device id typically used for the RCM inline meter is 2.
 
 ## CMC III sensor
 
-    $ ./check_rittal_pdu.pl -H my-pdu-with-rcm.local -D 3
+    $ ./check_rittal_pdu.pl -H my-pdu.local -D 3
     RITTAL_PDU OK - CMCIII-HUM Temperature is 20.7 degree_C | Temperature=20.7degree_C;;;-40;80 Humidity=47%;;;0;100 Dew_Point=9degree_C;;;-40;100
 
 # HOW TO START
