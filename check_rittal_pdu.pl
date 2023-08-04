@@ -30,7 +30,7 @@ my $Plugin = Monitoring::Plugin->new(
   usage => "This plugin checks Rittal power distribution units\n\n" .
            "Usage: %s -H <hostname> -D <device_id> -C <community>\n\n".
            "Use --help for a full list of parameters\n",
-  version => 'Version 1.10 Aug 01 2023, Hajo Kessener'
+  version => 'Version 1.11 Aug 04 2023, Hajo Kessener'
 );
 
 ############################################################
@@ -239,6 +239,8 @@ for(my $Ix = 1; $Ix <= $DevCount; $Ix++) {
     $ok_msg = ProcessCMCIIITmpSensor($Plugin,$Result,$Ix);
   } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7030.111') {
     $ok_msg = ProcessCMCIIIHumSensor($Plugin,$Result,$Ix);
+  } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7979713') {
+    $ok_msg = ProcessRCMInline($Plugin,$Result,$Ix);
   } elsif($Devices->{$Ix}->{'DevArtNr'} eq '7979714') {
     $ok_msg = ProcessRCMInline($Plugin,$Result,$Ix);
   } else {
