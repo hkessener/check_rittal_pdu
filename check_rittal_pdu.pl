@@ -70,39 +70,39 @@ $Plugin->add_arg(
 );
 
 $Plugin->add_arg(
-  spec => 'authpassword',
+  spec => 'authpassword|A=s',
   help => 'SNMPv3 authPassword',
   required => 0
 );
 
 $Plugin->add_arg(
-  spec => 'authkey',
+  spec => 'authkey|k=s',
   help => 'SNMPv3 authKey',
   required => 0
 );
 
 $Plugin->add_arg(
-  spec => 'authprotocol',
-  help => 'SNMPv3 authProtocol',
+  spec => 'authprotocol|a=s',
+  help => 'SNMPv3 authProtocol (md5|sha)',
   default => 'md5',
   required => 0
 );
 
 $Plugin->add_arg(
-  spec => 'privpassword',
+  spec => 'privpassword|X=s',
   help => 'SNMPv3 privPassword',
   required => 0
 );
 
 $Plugin->add_arg(
-  spec => 'privkey',
+  spec => 'privkey|K=s',
   help => 'SNMPv3 privKey',
   required => 0
 );
 
 $Plugin->add_arg(
-  spec => 'privprotocol',
-  help => 'SNMPv3 privProtocol',
+  spec => 'privprotocol|x=s',
+  help => 'SNMPv3 privProtocol (des|aes)',
   default => 'des',
   required => 0
 );
