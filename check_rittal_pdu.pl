@@ -122,7 +122,29 @@ if($Plugin->opts->snmp_version eq '1' || $Plugin->opts->snmp_version eq '2c') {
     -timeout   => $Plugin->opts->timeout,
   );
 } elsif($Plugin->opts->snmp_version eq '3') {
-  if(defined($Plugin->opts->authkey)) {
+  if(defined($Plugin->opts->privkey)) {
+    ($Session,$Error) = Net::SNMP->session(
+      -version      => $Plugin->opts->snmp_version,
+      -hostname     => $Plugin->opts->hostname,
+      -username     => $Plugin->opts->username,
+      -authkey      => $Plugin->opts->authkey,
+      -authprotocol => $Plugin->opts->authprotocol,
+      -privkey      => $Plugin->opts->privkey,
+      -privprotocol => $Plugin->opts->privprotocol,
+      -timeout      => $Plugin->opts->timeout,
+    );
+  } elsif(defined($Plugin->opts->privpassword)) {
+    ($Session,$Error) = Net::SNMP->session(
+      -version      => $Plugin->opts->snmp_version,
+      -hostname     => $Plugin->opts->hostname,
+      -username     => $Plugin->opts->username,
+      -authpassword => $Plugin->opts->authpassword,
+      -authprotocol => $Plugin->opts->authprotocol,
+      -privpassword => $Plugin->opts->privpassword,
+      -privprotocol => $Plugin->opts->privprotocol,
+      -timeout      => $Plugin->opts->timeout,
+    );
+  } elsif(defined($Plugin->opts->authkey)) {
     ($Session,$Error) = Net::SNMP->session(
       -version      => $Plugin->opts->snmp_version,
       -hostname     => $Plugin->opts->hostname,
@@ -138,24 +160,6 @@ if($Plugin->opts->snmp_version eq '1' || $Plugin->opts->snmp_version eq '2c') {
       -username     => $Plugin->opts->username,
       -authpassword => $Plugin->opts->authpassword,
       -authprotocol => $Plugin->opts->authprotocol,
-      -timeout      => $Plugin->opts->timeout,
-    );
-  } elsif(defined($Plugin->opts->privkey)) {
-    ($Session,$Error) = Net::SNMP->session(
-      -version      => $Plugin->opts->snmp_version,
-      -hostname     => $Plugin->opts->hostname,
-      -username     => $Plugin->opts->username,
-      -privkey      => $Plugin->opts->privkey,
-      -privprotocol => $Plugin->opts->privprotocol,
-      -timeout      => $Plugin->opts->timeout,
-    );
-  } elsif(defined($Plugin->opts->privpassword)) {
-    ($Session,$Error) = Net::SNMP->session(
-      -version      => $Plugin->opts->snmp_version,
-      -hostname     => $Plugin->opts->hostname,
-      -username     => $Plugin->opts->username,
-      -privpassword => $Plugin->opts->privpassword,
-      -privprotocol => $Plugin->opts->privprotocol,
       -timeout      => $Plugin->opts->timeout,
     );
   } else {
